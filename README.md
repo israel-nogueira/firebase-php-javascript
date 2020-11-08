@@ -5,6 +5,7 @@
 Modelei essa classe para que pudesse utilizar em meu projeto particular.
 
 Basicamente eu utilizo para criar eventos no front-end enquanto atualizo no Back.
+
 Porém pode ser utilizada de varias maneiras.
 
 Aproveitem! 
