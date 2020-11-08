@@ -46,43 +46,43 @@ Supondo que a autenticação seja feita com sucesso, siga os passos:
 
 ```php
 
-				// Setamos o path da base
-				websocket::base('/')
-				
-				// Crie um novo nó, se o nó já existir, ele atualizará o valor 
-				->set('testObject','testValue')
-				
-				// Suporta vários nós, se não existir, ele criará o nó
-				->set('testObject/testKey','testValueObject')
-				
-				// Também poderá criar arrays com sub nós
-				->set('testObject',['testKey'=>'value','testValueObject'=>'other value'])
+	// Setamos o path da base
+	websocket::base('/')
+	
+	// Crie um novo nó, se o nó já existir, ele atualizará o valor 
+	->set('testObject','testValue')
+	
+	// Suporta vários nós, se não existir, ele criará o nó
+	->set('testObject/testKey','testValueObject')
+	
+	// Também poderá criar arrays com sub nós
+	->set('testObject',['testKey'=>'value','testValueObject'=>'other value'])
 
-				/*
-				* Função push adaptada para trabalhar da maneira a qual eu acho correta
-				* Original insere uma chave randômica
-				*/
-				
-				//Se for uma string ('value'), ele transforma em array e adiciona o valor
-				->push('testKey','STRING QUALQUER') // return ['value','STRING QUALQUER']
+	/*
+	* Função push adaptada para trabalhar da maneira a qual eu acho correta
+	* Original insere uma chave randômica
+	*/
+	
+	//Se for uma string ('value'), ele transforma em array e adiciona o valor
+	->push('testKey','STRING QUALQUER') // return ['value','STRING QUALQUER']
 
-				//Se for uma array ["teste"=>"123"], ele insere um novo item 
-				->push('testObject','STRING QUALQUER') // return ["teste"=>"123","0"=>"STRING QUALQUER"]
-				
-				//Se for uma array ["teste"=>"123"], e o novo dado for outra array, ele insere um novo item 
-				->push('testObject',['string'=>'test']) // return ["teste"=>"123","string"=>"test"]
+	//Se for uma array ["teste"=>"123"], ele insere um novo item 
+	->push('testObject','STRING QUALQUER') // return ["teste"=>"123","0"=>"STRING QUALQUER"]
+	
+	//Se for uma array ["teste"=>"123"], e o novo dado for outra array, ele insere um novo item 
+	->push('testObject',['string'=>'test']) // return ["teste"=>"123","string"=>"test"]
 
-				// exclui o nó inteiro
-				->delete('Estatico/aaa/teste2')
+	// exclui o nó inteiro
+	->delete('Estatico/aaa/teste2')
 
-				// Retorna o nó pedido
-				->get('testObject'); // return ['string'=>'test']
+	// Retorna o nó pedido
+	->get('testObject'); // return ['string'=>'test']
 
 ```
 
 ### 3. JAVASCRIPT
 
-**3.1 Pegar as credenciais de acesso da API**
+**Pegar as credenciais de acesso da API**
 Para gerar as credenciais, siga estas etapas
 
 1. Vá até [Firebase Console](https://console.firebase.google.com/)
