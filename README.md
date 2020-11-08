@@ -46,7 +46,7 @@ Supondo que a autenticação seja feita com sucesso, siga os passos:
 
 ```php
 
-                // Setamos o path da base
+				// Setamos o path da base
 				websocket::base('/')
 				
 				// Crie um novo nó, se o nó já existir, ele atualizará o valor 
@@ -56,9 +56,9 @@ Supondo que a autenticação seja feita com sucesso, siga os passos:
 				->set('testObject/testKey','testValueObject')
 				
 				// Também poderá criar arrays com sub nós
-                ->set('testObject',['testKey'=>'value','testValueObject'=>'other value'])
-                
-                /*
+				->set('testObject',['testKey'=>'value','testValueObject'=>'other value'])
+
+				/*
 				* Função push adaptada para trabalhar da maneira a qual eu acho correta
 				* Original insere uma chave randômica
 				*/
@@ -72,10 +72,10 @@ Supondo que a autenticação seja feita com sucesso, siga os passos:
 				//Se for uma array ["teste"=>"123"], e o novo dado for outra array, ele insere um novo item 
 				->push('testObject',['string'=>'test']) // return ["teste"=>"123","string"=>"test"]
 
-                // exclui o nó inteiro
+				// exclui o nó inteiro
 				->delete('Estatico/aaa/teste2')
 
-                // Retorna o nó pedido
+				// Retorna o nó pedido
 				->get('testObject'); // return ['string'=>'test']
 
 ```
