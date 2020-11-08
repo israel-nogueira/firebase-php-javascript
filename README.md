@@ -1,6 +1,8 @@
 # Firebase Realtime (PHP+JAVASCRIPT)
-Este pacote faz a autenticação e o CRUD básico
+Este pacote faz a autenticação e o CRUD básico.
+
 Uma classe intermediária para o repositório  **luqmanrom/firebase-php**
+
 Moldei para que pudesse utilizar em meu projeto
 
 
