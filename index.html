@@ -1,0 +1,69 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+
+
+<script src="//gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+<script src="//gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+<script src="//gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+<script src="./firebase.js"></script>
+
+
+<script>
+
+    // Aqui recebemos o valor do nó
+	window.websocket.base('/pessoas/eu').get().then(function(retorno) {
+	 	console.log(retorno);
+	 });
+	 
+    /*
+	* Função push adaptada para trabalhar da maneira a qual eu acho correta
+	* Original insere uma chave randômica
+	* aqui a gente realmente insere um ítem 
+	*/
+	window.websocket.base('/').push('associado',[1,2,3,4]).then(function(snapshot) {
+	 	console.log(snapshot);
+	 });
+	 
+    // Aqui setamos um novo valor ao nó, e retornamos o conteudo
+    window.websocket.base('/pessoas/eu').set({nome: 'João',sobrenome: 'Silva'}).then(function(retorno) {
+    	window.websocket.base('/pessoas/eu').get().then(function(retorno) {
+    		console.log(retorno);
+    	});
+    });
+	// exclui o nó 
+	window.websocket.base('/pessoas/eu').delete().then(function() {
+	 	console.log('deletado');
+	 });
+
+
+//################################################################################
+//  LISTNERS
+//################################################################################
+
+	// UPDATE RETORNA  INCLUSOES, EXCLUSOES E ALTERAÇÕES	
+	window.websocket.onUpdate(function(snapshot) {
+		console.log('onUpdate',snapshot);
+	});
+
+	// RETORNA APENAS ALTERAÇÕES DE VALORES
+	window.websocket.onChanged(function(snapshot) {
+		console.log('onChanged',snapshot);
+	});
+
+
+	// RETORNA ITENS ADICIONADOS
+	window.websocket.onAdded(function(snapshot) {
+		console.log('onAdded',snapshot);
+	});
+
+
+	// RETORNA ITENS DELETADOS
+	window.websocket.onDelete(function(snapshot) {
+		console.log('onDelete',snapshot);
+	});
+
+
+</script>
+
+
+
