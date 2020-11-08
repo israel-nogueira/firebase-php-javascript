@@ -20,7 +20,7 @@ composer require geckob/firebase
 ## Início
 
 
-### 1. Authentication
+### 1. Autenticação
 
 **1.1 Gerar chave secreta da conta de serviço**
 Para gerar o arquivo secreto, siga estas etapas
