@@ -3,6 +3,8 @@
 		static $firebase;
 		public static function base($path)
 		{
+
+			// self::$firebase = new \Geckob\Firebase\Firebase('data:text/json;base64,'.base64_encode(json_encode(getenv('FIREBASE_PRIVATE_KEY'))));
 			self::$firebase = new \Geckob\Firebase\Firebase('./secret.json');
 			self::$firebase->setPath($path);
 			return new static;
