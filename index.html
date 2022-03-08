@@ -9,59 +9,74 @@
 
 
 <script>
+	
 
-    // Aqui recebemos o valor do nó
-	window.websocket.base('/pessoas/eu').get().then(function(retorno) {
-	 	console.log(retorno);
-	 });
-	 
-    /*
+
+// DESSA FORMA PODEREMOS CRIAR VARIAS INSTANCIAS SEPARADAMENTE
+// E CONTROLAR INDIVIDUALMENTE CADA UMA DELAS
+var  NOVA_INSTANCIA  =  await  window.newFirebase.novaInstancia('NOVA_INSTANCIA');
+
+
+//################################################################################
+// AÇÕES REATIVAS
+//################################################################################
+	/*
 	* Função push adaptada para trabalhar da maneira a qual eu acho correta
 	* Original insere uma chave randômica
-	* aqui a gente realmente insere um ítem 
+	* aqui a gente realmente insere um ítem
 	*/
-	window.websocket.base('/').push('associado',[1,2,3,4]).then(function(snapshot) {
-	 	console.log(snapshot);
-	 });
-	 
-    // Aqui setamos um novo valor ao nó, e retornamos o conteudo
-    window.websocket.base('/pessoas/eu').set({nome: 'João',sobrenome: 'Silva'}).then(function(retorno) {
-    	window.websocket.base('/pessoas/eu').get().then(function(retorno) {
-    		console.log(retorno);
-    	});
-    });
-	// exclui o nó 
-	window.websocket.base('/pessoas/eu').delete().then(function() {
-	 	console.log('deletado');
-	 });
+	NOVA_INSTANCIA.base('root/teste1').push(['aaa','bbb','ccc','dddd'])
+	.then(function (snapshot) {
+		console.log("Sucesso push:", snapshot)
+	}).catch(function (snapshot) { 
+		console.log("Falha push:", snapshot)
+	})
 
+	// Aqui setamos um novo valor ao nó, e retornamos o conteudo
+	NOVA_INSTANCIA.base('/pessoas/eu').set({nome: 'João',sobrenome: 'Silva'})
+	.then(function(retorno) {
+		console.log("Sucesso set:",retorno);
+	}).catch(function(retorno) {
+		console.log("Falha set:",retorno);
+	})
+
+	// Para excluir o nó baste:
+	NOVA_INSTANCIA.base('/pessoas/eu').delete()
+	.then(function() {
+		console.log('deletado');
+	}).catch(function(retorno) {
+		console.log("Falha delete");
+	})
+
+	
+	
 
 //################################################################################
-//  LISTNERS
+// LISTNERS
 //################################################################################
 
-	// UPDATE RETORNA  INCLUSOES, EXCLUSOES E ALTERAÇÕES	
-	window.websocket.onUpdate(function(snapshot) {
-		console.log('onUpdate',snapshot);
-	});
+// CRIAMOS UMA NOVA INSTANCIA
+var  minhaInstancia  =  await  window.newFirebase.novaInstancia('NOVA_INSTANCIA');
 
-	// RETORNA APENAS ALTERAÇÕES DE VALORES
-	window.websocket.onChanged(function(snapshot) {
-		console.log('onChanged',snapshot);
-	});
+// UPDATE RETORNA INCLUSOES, EXCLUSOES E ALTERAÇÕES
+minhaInstancia.base('usuario').onUpdate(function(snapshot) {
+	console.log('onUpdate',snapshot);
+});
 
+// RETORNA APENAS ALTERAÇÕES DE VALORES
+minhaInstancia.base('usuario').onChanged(function(snapshot) {
+	console.log('onChanged',snapshot);
+});
 
-	// RETORNA ITENS ADICIONADOS
-	window.websocket.onAdded(function(snapshot) {
-		console.log('onAdded',snapshot);
-	});
+// RETORNA ITENS ADICIONADOS
+minhaInstancia.base('usuario').onAdded(function(snapshot) {
+	console.log('onAdded',snapshot);
+});
 
-
-	// RETORNA ITENS DELETADOS
-	window.websocket.onDelete(function(snapshot) {
-		console.log('onDelete',snapshot);
-	});
-
+// RETORNA ITENS DELETADOS
+minhaInstancia.base('usuario').onDelete(function(snapshot) {
+	console.log('onDelete',snapshot);
+});
 
 </script>
 
