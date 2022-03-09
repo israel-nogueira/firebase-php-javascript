@@ -1,0 +1,5 @@
+{
+    "require": {
+        "geckob/firebase": "^1.0"
+    }
+}
